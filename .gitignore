@@ -1,0 +1,26 @@
+# Configuration file
+config.ini
+
+# Audio files
+*.mp3
+
+# Python Cache
+__pycache__/
+.mypy_cache
+*.pyc
+*.egg-info
+*.pyo
+
+# Snyk
+*.dccache
+
+# Logs
+logs/
+*.log
+
+# Virtual Environment
+venv/
+.venv/
+
+# MacOS Filesystem Data
+.DS_Store
