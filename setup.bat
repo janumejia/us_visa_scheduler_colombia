@@ -13,7 +13,7 @@ call venv\Scripts\activate
 
 REM Install dependencies
 echo Installing dependencies...
-pip install --upgrade pip
+python.exe -m pip install --upgrade pip
 pip install -r requirements.txt
 
 echo Installation completed.
