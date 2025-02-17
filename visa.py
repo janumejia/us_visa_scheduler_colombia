@@ -3,9 +3,7 @@
 import configparser
 import json
 import locale
-import platform
 import random
-import subprocess
 import time
 from datetime import datetime
 from pathlib import Path
@@ -13,6 +11,7 @@ from urllib.parse import urlencode
 
 import requests
 from gtts import gTTS  # To Google voice
+from playsound import playsound
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -138,7 +137,7 @@ def set_spanish_locale() -> None:
                 locale.setlocale(locale.LC_TIME, "Spanish_Spain.1252")  # Another variant in Windows
             except locale.Error:
                 print(
-                    "No se pudo establecer el idioma español. Se usará el predeterminado.",
+                    "Cannot set Spanish locale. Default locale will be used.",
                 )
 
 
@@ -324,32 +323,6 @@ def start_login_process() -> bool:
     return False
 
 
-def identify_os_and_play_audio() -> None:
-    """Detect the user's operating system and plays an audio file using the appropriate command.
-
-    Returns:
-        None
-
-    """
-    # Detects the user's operating system
-    operativo_system = platform.system()
-
-    if operativo_system == "Darwin":  # macOS
-        subprocess.run(["afplay", AUDIO_FILENAME], check=True)  # noqa: S603, S607
-    elif operativo_system == "Linux":
-        subprocess.run(  # noqa: S603
-            ["mpg123", AUDIO_FILENAME],  # noqa: S607
-            check=True,
-        )
-    elif operativo_system == "Windows":
-        subprocess.run(  # noqa: S603
-            ["cmd", "/c", "start", AUDIO_FILENAME],  # noqa: S607
-            check=True,
-        )
-    else:
-        print(f"No se pudo reproducir el audio en el SO: {operativo_system}")
-
-
 def str_to_google_voice(message: str) -> None:
     """Convert a string to a Google voice message.
 
@@ -361,11 +334,11 @@ def str_to_google_voice(message: str) -> None:
 
     """
     # Create a gTTS object with the message and set the language to Spanish
-    tts = gTTS(text=message, lang="es")
+    tts = gTTS(text=message, lang="es", tld="com.mx", slow=False)
 
     # Save the audio and play it
     tts.save(AUDIO_FILENAME)
-    identify_os_and_play_audio()
+    playsound(f"./{AUDIO_FILENAME}", block=True)
 
 
 def get_cas_date(consulate_date: str, consulate_time: str) -> str | bool:
@@ -693,8 +666,22 @@ def setup_chrome_driver() -> webdriver.Chrome | webdriver.Remote | None:
     driver = None
     try:
         if LOCAL_USE:
-            driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-            # driver = webdriver.Chrome(service=Service(executable_path='~/.wdm/drivers/chromedriver/mac64/129.0.6668.70/chromedriver-mac-arm64/chromedriver'))
+            options = webdriver.ChromeOptions()
+
+            # To avoid Tensorflow warnings: https://stackoverflow.com/questions/78385667/why-do-i-keep-getting-this-tensorflow-related-message-in-selenium-errors
+            options.add_argument("--log-level=1")
+            driver = webdriver.Chrome(
+                service=Service(ChromeDriverManager().install()),
+                options=options,
+            )
+            """ # noqa: ERA001
+            In case the previous line fails, use the following line to specify the path to the
+            chromedriver executable.
+            driver = webdriver.Chrome(
+                service=Service(executable_path="~/path/to/your/chromedriver"),
+                options=options,
+            )
+            """
         elif HUB_ADDRESS:
             driver = webdriver.Remote(
                 command_executor=HUB_ADDRESS,
