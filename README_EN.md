@@ -1,6 +1,8 @@
 # 🇺🇸 US Visa Appointment Rescheduler - Colombia  
 
-This project is an automated bot designed to reschedule U.S. visa appointments on [usvisa-info.com](https://usvisa-info.com). It allows you to **reschedule both the consular and CAS appointments** to a more convenient date and time.  
+This project is an automated bot designed to reschedule U.S. visa appointments on [usvisa-info.com](https://usvisa-info.com). It allows you to **reschedule both the consular and CAS appointments** to a more convenient date and time.
+
+https://github.com/user-attachments/assets/1c773417-e74c-4159-a8d0-5574b3381404
 
 ## 📌 Prerequisites  
 - You must already have a **scheduled U.S. visa appointment**.  
