@@ -29,7 +29,8 @@ Para añadir una embajada, necesitas obtener su **"facility id"** siguiendo esto
 ## ⚙️ Configuración inicial  
 1. **Instalar dependencias**:  
    - [Google Chrome](https://www.google.com/chrome/)  
-   - [Python 3](https://www.python.org/downloads/)  
+   - [Python 3](https://www.python.org/downloads/)
+   - [ChromeDriver](https://developer.chrome.com/docs/chromedriver/downloads?hl=es-419)
 
 2. **Configurar el entorno virtual e instalar las dependencias**:  
    - **En Windows**:  
