@@ -27,8 +27,9 @@ To add an embassy, you need to find its **"facility id"** by following these ste
 
 ## ⚙️ Initial Setup  
 1. **Install dependencies**:  
-   - [Google Chrome](https://www.google.com/chrome/)  
-   - [Python 3](https://www.python.org/downloads/)  
+   - [Google Chrome](https://www.google.com/chrome/)
+   - [Python 3](https://www.python.org/downloads/)
+   - [ChromeDriver](https://developer.chrome.com/docs/chromedriver/downloads?hl=es-419)
 
 2. **Set up the virtual environment and install dependencies**:  
    - **On Windows**:  
