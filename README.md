@@ -3,7 +3,7 @@
 
 Este proyecto es un bot automatizado para reprogramar citas de visa americana en [usvisa-info.com](https://usvisa-info.com). Permite reagendar tanto la **cita consular** como la **cita CAS** a una fecha y hora más conveniente.
 
-https://github.com/user-attachments/assets/1c773417-e74c-4159-a8d0-5574b3381404
+https://github.com/user-attachments/assets/73dbec53-f3c5-4a8b-bd06-61d9df6b7b5c
 
 
 ## 📌 Requisitos previos  
